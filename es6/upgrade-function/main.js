@@ -47,3 +47,20 @@ function func2(a, b, c) {
 }
 
 func2(1, 2, 3);
+
+// -----------------------------------------------
+
+// Rest Parameter
+
+// ...rest를 param값으로 넣으면 해당 함수에 들어오는 모든 param들을 Array로 만들어서 rest에 담아준다.
+// 주의 점으로는 parameter가 여러개일 경우 가장 뒤게 써야하면 한 번만 사용 가능하다.
+function func3(...rest) {
+  console.log(rest); // ---> (5) [1, 2, 3, 4, 5]
+}
+func3(1, 2, 3, 4, 5);
+
+function func4(a, b, ...rest) {
+  console.log(a, b); // ---> 1, 2
+  console.log(rest); // ---> (7) [3, 4, 5, 6, 7, 8, 9]
+}
+func4(1, 2, 3, 4, 5, 6, 7, 8, 9);
