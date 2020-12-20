@@ -39,3 +39,25 @@ function changeObj(obj) {
 }
 changeObj(myObj); // ---> myObj.data가 up으로 바뀌지않고 down 그대로 있음
 // 파라미더는 변수생성 & 할당과 똑같다. 그 파라미터 변수에 = {} 해봤자 원래의 오브젝트를 변경하지 못한다.
+
+// -------------------------------------
+
+// Object를 만들어내는 Constructor
+
+// 비슷한 Student Object를 여러개 만들려면 constructor라는 object 생성 기계를 만든다.
+
+function Student(a, b) {
+  this.year = 1;
+  this.class = 'B';
+  this.name = a;
+  this.age = b;
+}
+
+let student1 = new Student('jang', 17);
+let student2 = new Student('Kim', 16);
+
+// 사용된 constructor의 양식에 맞춰서 오브젝트가 생성된다.
+// 이렇게 새로 생성된 object를 instance라고 부른다.
+// 그리고 이런 instance를 만드는 것을 object 생성 기계 즉, constructor 혹은 생성자라고 부른다.
+console.log(student1); // ---> Student {year: 1, class: "B", name: "jang", age: 17}
+console.log(student2); // ---> Student {year: 1, class: "B", name: "Kim", age: 16}
