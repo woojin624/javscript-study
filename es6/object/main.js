@@ -61,3 +61,31 @@ let student2 = new Student('Kim', 16);
 // 그리고 이런 instance를 만드는 것을 object 생성 기계 즉, constructor 혹은 생성자라고 부른다.
 console.log(student1); // ---> Student {year: 1, class: "B", name: "jang", age: 17}
 console.log(student2); // ---> Student {year: 1, class: "B", name: "Kim", age: 16}
+
+// -----------------------------------------
+
+// javascript에만 있는 상속을 구현할 수 있는 prototype 문법
+
+// 이렇게 constructor를 만들면 prototype이라는 공간이 자동으로 생긴다.
+function CellPhone(a, b) {
+  this.model = 'iPhone';
+  this.series = a;
+  this.color = b;
+}
+
+CellPhone.prototype.brand = 'Apple';
+
+let phone1 = new CellPhone('12Pro', 'Graphite');
+
+console.log(phone1); // ---> CellPhone {model: "iPhone", series: "12Pro", color: "Graphite"}
+console.log(phone1.brand); // ---> Apple
+// phone1로 찍어냈을 때는 brand 속성값이 조회되지 않았지만 phone1.brand로 찍어보면 나온다. 이게 prototype으로 상속을 받은 경우
+
+// __proto__ 부모요소의 prototype을 검사
+console.log(phone1.__proto__); // ---> {brand: "Apple", constructor: ƒ}
+
+let parent = { name: 'jang' };
+let child = {};
+child.__proto__ = parent; // __proto__는 부모의 prototype 등록
+
+console.log(child.name); // ---> jang
