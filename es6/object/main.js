@@ -89,3 +89,17 @@ let child = {};
 child.__proto__ = parent; // __proto__는 부모의 prototype 등록
 
 console.log(child.name); // ---> jang
+
+// -------------------------------------------
+
+// 상속기능 구현하는 Object.create() --- es5문법
+
+let parent2 = { name: 'jang', age: 70 };
+
+// object를 만들면서 prototype을 정의
+let child2 = Object.create(parent2);
+child.age = 30;
+
+console.log(child2); // ---> {}
+// child2 만 출력하면 아무것도 안뜨지만 child2.name은 prototype을 상속받았기 때문에 값이 출력된다.
+console.log(child2.name); // ---> jang
