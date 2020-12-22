@@ -19,3 +19,34 @@ class Parents {
 let child = new Parents('jang');
 console.log(child); // ---> Parents {name: "jang"}
 // ---> 객체지향 문법을 왜 쓰냐? - 여러개의 Object를 만들어서 쓰고 싶어서.
+
+// -------------------------------------
+
+// extends / super
+
+class Parent1 {
+  constructor(firstName) {
+    this.lastName = 'jang';
+    this.firstName = firstName;
+  }
+  sayHi() {
+    console.log('Hi');
+  }
+}
+let parent11 = new Parent1('woojin'); // ---> Parent1 {lastName: "jang", firstName: "woojin"}
+
+// extends(class 상속) - 기존 클래스와 유사한 클래스를 만들기 위함
+class Child1 extends Parent1 {
+  constructor(firstName) {
+    // extends를 통해 클래스의 속성을 상속 받으려면 constructor 내부에 super()를 사용해야한다.
+    // super() - 물려받는 클래스의 constructor
+    super(firstName);
+    this.age = 20;
+  }
+  sayHi() {
+    console.log('Hello');
+    // constructor 밖에서 사용하는 super는 부모 클래스의 prototype을 의미한다.
+    super.sayHi(); // ---> Hi
+  }
+}
+let child11 = new Child1('jinwoo'); // ---> Child1 {lastName: "jang", firstName: "jinwoo", age: 20}
