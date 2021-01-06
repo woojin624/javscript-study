@@ -54,3 +54,37 @@
   console.log(result3); // (3) [3, 4, 5]  반환 값으로 start값부터 end값 전까지의 배열을 반환해준다.
   console.log(numbers3); // (5) [1, 2, 3, 4, 5]  splice와는 다르게 기존의 배열을 건드리지 않는다.
 }
+
+// ---------------------------
+console.clear();
+
+// 객체 배열을 이용한 배열 API 활용
+
+class Student {
+  constructor(name, age, enrolled, score) {
+    this.name = name;
+    this.age = age;
+    this.enrolled = enrolled;
+    this.score = score;
+  }
+}
+
+const students = [
+  new Student('A', 20, true, 70), //
+  new Student('B', 30, false, 80),
+  new Student('C', 26, true, 56),
+  new Student('D', 29, true, 90),
+  new Student('E', 32, false, 74),
+];
+
+// 점수가 90점인 학생 찾기
+{
+  // find() - Array안에서 첫번째로 찾아진 요소를 반환, predicate가 true일 때 반환하며 true를 찾지 못하면 undefined를 반환
+  // find(predicate: (this: void, value: Student, index: number, obj: Student[]) => value is Student, thisArg?: any): Student (+1 overload)
+  const result = students.find((student, index) => {
+    // console.log(student, index);
+    return student.score === 90;
+  });
+
+  console.log(result); // Student {name: "D", age: 29, enrolled: true, score: 90}
+}
