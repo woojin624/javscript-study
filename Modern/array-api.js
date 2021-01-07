@@ -88,3 +88,70 @@ const students = [
 
   console.log(result); // Student {name: "D", age: 29, enrolled: true, score: 90}
 }
+
+// 수업에 등록된 학생들(enrolled === true)로 배열만들기
+{
+  // filter() - 콜백함수를 전달해서 콜백함수가 true 요소들로 새로운 배열을 반환해준다.
+  // filter(predicate: (value: Student, index: number, array: Student[]) => unknown, thisArg?: any): Student[] (+1 overload)
+  const result = students.filter((student) => student.enrolled);
+  console.log(result);
+  // 0: Student {name: "A", age: 20, enrolled: true, score: 70}
+  // 1: Student {name: "C", age: 26, enrolled: true, score: 56}
+  // 2: Student {name: "D", age: 29, enrolled: true, score: 90}
+}
+
+// 학생들의 배열에 점수만 추출하여 점수 배열 만들기
+{
+  // map() - Array안에 들어있는 요소 한가지씩 다른 것으로 변환해준다. -> 지정된 콜백함수를 호출하면서 각각의 요소들을 함수를 거쳐 새로운 값으로 변환.
+  // map(callbackfn: (value: Student, index: number, array: Student[]) => any, thisArg?: any): any[]
+  const result = students.map((student) => student.score);
+  console.log(result); // (5) [70, 80, 56, 90, 74]
+}
+
+// 학생들 중에 점수가 60점보다 낮은 학생이 있는지 확인
+{
+  // some() - Array의 요소 중에 콜백함수의 리턴이 true인지 아닌지 확인해준다. -> 배열에서 하나라도 콜백함수의 조건에 맞다면 true를 반환
+  // some(predicate: (value: Student, index: number, array: Student[]) => unknown, thisArg?: any): boolean
+  const result = students.some((student) => student.score < 60);
+  console.log(result); // true
+
+  // some() 함수와 비슷한 것으로 every()가 있다.
+
+  // every() - Array의 요소 전부가 콜백함수의 리턴이 true인지 아닌지 확인해준다. -> 배열에서 모든 요소가 콜백함수의 조건에 맞다면 true를 반환, 하나라도 조건에 맞지 않다면 false를 반환한다.
+  // every(predicate: (value: Student, index: number, array: Student[]) => unknown, thisArg?: any): boolean (+1 overload)
+  const result2 = students.every((student) => student.score < 60);
+  console.log(result2); // false
+}
+
+// 학생들의 평균 점수를 구하기
+{
+  // reduce() - 콜백함수와 초기값을 전달하여 콜백함수로 리턴된 값이 누적되어 반환된다. (값을 모아 놓을 떄)
+  // reduce(callbackfn: (previousValue: Student, currentValue: Student, currentIndex: number, array: Student[]) => Student): Student (+2 overloads)
+  const result = students.reduce((prev, curr) => {
+    // console.log('-----');
+    // console.log(prev);
+    // console.log(curr);
+    return prev + curr.score;
+  }, 0);
+  console.log(result); // 총합 370
+  console.log(result / students.length); // 평균 74
+
+  // reduceRight() 이라는 것도 있는데 이것은 reduce()와는 반대로 배열의 맨 뒤에서부터 호출을 한다.
+}
+
+// 학생들의 모든 점수를 string으로 변환
+{
+  const result = students.map((student) => student.score).join(', ');
+  console.log(result); // 70, 80, 56, 90, 74
+}
+
+// 학생들의 모든 점수를 오름차순으로 정렬해서 string으로 변환
+{
+  const result = students
+    .map((student) => student.score)
+    .sort()
+    // .sort((a, b) => a - b) 오름차순
+    // .sort((a, b) => b - a) 내림차순
+    .join(', ');
+  console.log(result); // 56, 70, 74, 80, 90
+}
