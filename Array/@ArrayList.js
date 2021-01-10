@@ -73,6 +73,19 @@ const a = [1, 2, 3, 4, 5, 6];
   console.log(result); // [1, 2, 3, 4, 5, 6, "a", "b", "c", "d"]
 }
 
+// find()
+// Array안에서 첫번째로 찾아진 요소를 반환, predicate가 true일 때 반환하며 true를 찾지 못하면 undefined를 반환
+{
+  const cars = [
+    { name: 'kia', price: 2000 },
+    { name: 'volvo', price: 5000 },
+    { name: 'audi', price: 7000 },
+  ];
+  const result = cars.find((v) => v.price === 5000);
+  console.log(result); // {name: "volvo", price: 5000}
+  // 이 메서드는 객체들로 요소가 이루어진 배열을 다룰 때 유용하다.
+}
+
 // some()
 // 배열의 요소 중에 콜백함수의 리턴이 true인지 아닌지 확인해준다. -> 배열에서 하나라도 콜백함수의 조건에 맞다면 true를 반환
 // some(predicate: (value: number, index: number, array: number[]) => unknown, thisArg?: any): boolean
@@ -102,6 +115,7 @@ const a = [1, 2, 3, 4, 5, 6];
 
 // map()
 // 배열의 각 원소별로 지정된 함수를 실행한 결과로 구성된 새로운 배열을 반환한다.
+// Array안에 들어있는 요소 한가지씩 다른 것으로 변환해준다. -> 지정된 콜백함수를 호출하면서 각각의 요소들을 함수를 거쳐 새로운 값으로 변환.
 // map<number>(callbackfn: (value: number, index: number, array: number[]) => number, thisArg?: any)
 {
   const arr = [...a];
@@ -111,6 +125,7 @@ const a = [1, 2, 3, 4, 5, 6];
 
 // filter()
 // 지정된 함수의 결과 값을 true로 만드는 요소들로 구성된 새로운 배열을 반환한다.
+// 콜백함수를 전달해서 콜백함수가 true 요소들로 새로운 배열을 반환해준다.
 // filter(predicate: (value: number, index: number, array: number[]) => unknown, thisArg?: any)
 {
   const arr = [...a];
@@ -159,4 +174,32 @@ const a = [1, 2, 3, 4, 5, 6];
   console.log(arr.join()); // 1,2,3,4,5,6
   console.log(arr.join('...')); // 1...2...3...4...5...6
   console.log(arr.join(' >-< ')); // 1 >-< 2 >-< 3 >-< 4 >-< 5 >-< 6
+}
+
+// split()
+// 문자열을 배열로 반환
+{
+  const string = '1234567';
+  console.log(string.split()); // ["1234567"]
+  console.log(string.split('')); // ["1", "2", "3", "4", "5", "6", "7"]
+  console.log(string.split('').map((v) => +v)); // [1, 2, 3, 4, 5, 6, 7]
+}
+
+// 배열의 인덱스 검색
+{
+  const arr = [...a];
+
+  // indexOf()
+  // 밸류값을 입력하여 해당 밸류의 인덱스 값 반환
+  console.log(arr.indexOf(3)); // 2
+  console.log(arr.indexOf(1222)); // -1 배열 안에 없는 값을 입력하면 -1 반환
+
+  // lastIndexOf()
+  // 배열 안에 중복된 밸류가 있다면 가장 마지막에 있는 인덱스를 반환
+  console.log(arr.lastIndexOf(2)); // 1
+
+  // includes()
+  // 밸류값을 입력하여 해당 밸류가 배열안에 있다면 true 없다면 false 반환
+  console.log(arr.includes(111)); // false
+  console.log(arr.includes(3)); // true
 }
