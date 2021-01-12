@@ -86,6 +86,23 @@ const a = [1, 2, 3, 4, 5, 6];
   // 이 메서드는 객체들로 요소가 이루어진 배열을 다룰 때 유용하다.
 }
 
+// findIndex()
+// 매개 변수로 지정된 콜백 함수에서 요구하는 원소를 찾기 위해 배열 안의 원소를 순서대로 탐색하면서 최초 찾은 배열의 원소에 대한 인덱스 반환한다. 존재하지 않으면 -1을 반환한다.
+{
+  const cars = [
+    { name: 'kia', price: 2000 },
+    { name: 'volvo', price: 5000 },
+    { name: 'audi', price: 7000 },
+  ];
+  const result = cars.findIndex((v) => v.price === 5000);
+  console.log(result); // 1
+  const result2 = cars.findIndex((v) => v.price === 10000);
+  console.log(result2); // -1
+  const result3 = cars.findIndex((v) => v.name === 'audi');
+  console.log(result3); // 2
+  // 이 메서드는 객체들로 요소가 이루어진 배열을 다룰 때 유용하다.
+}
+
 // some()
 // 배열의 요소 중에 콜백함수의 리턴이 true인지 아닌지 확인해준다. -> 배열에서 하나라도 콜백함수의 조건에 맞다면 true를 반환
 // some(predicate: (value: number, index: number, array: number[]) => unknown, thisArg?: any): boolean
@@ -183,6 +200,30 @@ const a = [1, 2, 3, 4, 5, 6];
   console.log(string.split()); // ["1234567"]
   console.log(string.split('')); // ["1", "2", "3", "4", "5", "6", "7"]
   console.log(string.split('').map((v) => +v)); // [1, 2, 3, 4, 5, 6, 7]
+}
+
+// fill()
+// 배열의 모든 요소를 입력된 파라미터로 채움
+{
+  const arr = [...a];
+  const result = arr.fill('a');
+  console.log(result); // ["a", "a", "a", "a", "a", "a"]
+  const result2 = arr.fill(1);
+  console.log(result2); // [1, 1, 1, 1, 1, 1]
+}
+
+// keys()
+// 배열의 각 인덱스를 키(Key) 값으로 가지는 새로운 Array Iterator 객체를 반환한다.
+{
+  const arr = ['apple', 'banana', 'grape', 'strawberry'];
+  const iterator = arr.keys();
+  for (let key of iterator) {
+    console.log(key);
+    // 0
+    // 1
+    // 2
+    // 3
+  }
 }
 
 // 배열의 인덱스 검색

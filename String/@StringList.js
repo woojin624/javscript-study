@@ -53,7 +53,7 @@
   const a = 'abcdefghijk';
   console.log(a.slice(2, 6)); // cdef
   console.log(a.slice(2)); // cdefghijk     endIndex를 입력 안하면 끝까지 간다
-  console.log(a.slice(-4, -2));
+  console.log(a.slice(-4, -2)); // 뒤에서 4번째 부터 뒤제엇 2번째까지
 }
 
 // split()
@@ -92,4 +92,92 @@
   console.log(a.trim()); // 'swwwd'
   const b = ' awwqq     ';
   console.log(b.trim()); // 'awwqq'
+}
+
+// trimStart(), trimEnd()
+// 문자열의 앞이나 뒤의 공백을 제거
+{
+  const a = '      ascd         ';
+  console.log(a.trimStart()); // 'ascd         '
+  console.log(a.trimEnd()); // '      ascd'
+}
+
+// repeat()
+// 파라미터로 전달된 숫자만큼 반복하여 연결한 새로운 문자열을 반환, 0을 전달할 경우 빈문자열 리턴
+{
+  const a = 'abc';
+  const result = a.repeat(5);
+  console.log(result); // abcabcabcabcabc
+  const result2 = result + '*'.repeat(5);
+  console.log(result2); // abcabcabcabcabc*****
+}
+
+// includes()
+// 파라미터로 전달된 문자열이 포함되어 있는지 확인 후 true / false로 반환
+{
+  const a = 'woody';
+  console.log(a.includes('w')); // true
+  console.log(a.includes('w', 4)); // false -- 두번째 인자로 숫자를 같이 전달해주면 해당 인덱스에 해당 문자열이 있는지 확인
+  console.log(a.includes('w', 0)); // true
+
+  console.log(a.includes('q')); // false
+  console.log(a.includes(' ')); // false
+  console.log(a.includes('')); // true
+}
+
+// startsWith()
+// 파라미터로 전달한 문자열로 시작하는지 확인 후 boolean으로 리턴
+{
+  const a = 'abcdefghijk';
+  console.log(a.startsWith('a')); // true
+  console.log(a.startsWith('b')); // false
+
+  console.log(a.startsWith('a', 1)); // false -- 두번째 인자로 숫자를 넣으면 해당 인덱스에서 부터 해당 문자열로 시작하는지 체크
+  console.log(a.startsWith('a', 0)); // true
+
+  console.log(a.startsWith('c', 0)); // false
+  console.log(a.startsWith('c', 2)); // true
+  console.log(a.startsWith('d', 3)); // true
+}
+
+// endsWith()
+// 파라미터로 전달한 문자열로 끝나는지 확인 후 boolean으로 리턴
+{
+  const a = 'javascript';
+  console.log(a.endsWith('t')); // true
+  console.log(a.endsWith('w')); // false
+
+  console.log(a.endsWith('t', 1)); //  false -- 두번째 인자로 숫자를 넣으면 해당 인덱스에 부터 해당 문자열로 끝나는지 체크
+  console.log(a.endsWith('t', a.length)); //  true
+  console.log(a.endsWith('p', a.length - 1)); //  true
+}
+
+// localeCompare()
+// 파라미터로 지정된 문자열이 정렬상 string 객체의 문자열 뒤에 있으면 음수, 그 반대의 경우는 양수, 동등한 경우에는 0을 반환한다.
+{
+  const a = 'e';
+  console.log(a.localeCompare('e')); // 0
+  console.log(a.localeCompare('a')); // 1
+  console.log(a.localeCompare('h')); // -1
+}
+
+// padEnd()
+// 현재 문자열에 파라미터로 지정된 길이만큼 지정 문자로 채워 새로운 문자열로 반환한다.
+{
+  const a = 'good';
+  console.log(a.padEnd(10, '!')); // good!!!!!!  -- 기존 'good'은 4자리 이므로 뒤에 딸려온 '!'가 10개를 채우기 위해 6개가 더 써진다.
+}
+
+// padStart()
+// 현재 문자열의 시작을 다른 문자열로 채워 주어진 길이 값을 갖는 문자열을 반환한다.
+{
+  const a = 'good';
+  console.log(a.padStart(10, '!')); // !!!!!!good
+}
+
+// valueOf()
+// String 객체의 원시값(primitive)을 반환한다.
+{
+  const a = 'qwe';
+  console.log(a.valueOf()); // 'qwe'
 }
