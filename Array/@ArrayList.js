@@ -226,6 +226,15 @@ const a = [1, 2, 3, 4, 5, 6];
   }
 }
 
+// from()
+// 유사 배열 객체나 반복 가능한 객체를 얕게 복사하여 새로운 배열객체를 만든다.
+// from(arrayLike[, mapFn[, thisArg]])
+{
+  console.log(Array.from('foo')); // ['f', 'o', 'o']
+  console.log(Array.from([1, 2, 3], (x) => x + x)); // [2, 4, 6]
+  console.log(Array.from({ length: 5 }, (v, i) => i)); // [0, 1, 2, 3, 4]
+}
+
 // 배열의 인덱스 검색
 {
   const arr = [...a];
